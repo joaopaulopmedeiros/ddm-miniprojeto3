@@ -1,4 +1,5 @@
 import 'package:f03_lugares/providers/place.dart';
+import 'package:f03_lugares/screens/place_management_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:f03_lugares/providers/favorite.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.COUNTRY_PLACES: (ctx) => const CountryPlacesScreen(),
           AppRoutes.PLACES_DETAIL: (ctx) => const PlaceDetailScreen(),
           AppRoutes.PLACES_ADD: (ctx) => const AddPlaceScreen(),
+          AppRoutes.PLACES_MANAGEMENT: (ctx) => const PlaceManagementScreen(),          
           AppRoutes.SETTINGS: (ctx) => const SettingsScreen(),
         },
       ),

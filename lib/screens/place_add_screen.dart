@@ -1,3 +1,4 @@
+import 'package:f03_lugares/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class AddPlaceScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class AddPlaceScreen extends StatelessWidget {
       body: const Center(
         child: Text('Formulário de Cadastro de Lugares'),
       ),
+      drawer: const MainDrawer(),
     );
   }
 }

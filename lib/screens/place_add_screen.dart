@@ -1,5 +1,6 @@
 import 'package:f03_lugares/components/main_drawer.dart';
 import 'package:f03_lugares/providers/country.dart';
+import 'package:f03_lugares/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,10 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
     final List<String> categories =
         provider.countries.map((e) => e.id).toList();
     String? selectedCategory;
+
+    const snackBar = SnackBar(
+      content: Text('Sucesso!'),
+    );
 
     return Container(
       margin: const EdgeInsets.all(16.0),
@@ -108,7 +113,10 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {}
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.of(context).pushNamed(AppRoutes.HOME);
+                  }
                 },
                 child: const Text('Adicionar'),
               ),

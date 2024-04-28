@@ -20,7 +20,7 @@ class AddPlaceScreen extends StatelessWidget {
 
 class AddPlaceForm extends StatefulWidget {
   const AddPlaceForm({super.key});
-  
+
   @override
   State<StatefulWidget> createState() => _AddPlaceFormState();
 }
@@ -30,23 +30,42 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CountryProvider>(context);
-    final List<String> _categories = provider.countries.map((e) =>  e.id).toList();
-    String? _selectedCategory;
+    final List<String> categories =
+        provider.countries.map((e) => e.id).toList();
+    String? selectedCategory;
 
-    return Form(key: _formKey, child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,      
-      children: [
-        DropdownButtonFormField<String>(
-          value: _selectedCategory,
-          items: _categories.map((category) => 
-             DropdownMenuItem<String>(
-                value: category,
-                child: Text(category),
-              )
-          ).toList(), 
-          onChanged: (String? value) {  },
-        ),
-      ],
-    ));
+    return Container(
+      margin: const EdgeInsets.all(16.0),
+      child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Título',
+                  labelText: 'Título',
+                ),
+                onSaved: (String? value) {},
+                validator: (String? value) {
+                  return (value != null && value != "")
+                      ? 'Preencha o campo obrigatório.'
+                      : null;
+                },
+              ),
+              DropdownButtonFormField<String>(
+                hint: const Text("País"),
+                value: selectedCategory,
+                items: categories
+                    .map((category) => DropdownMenuItem<String>(
+                          value: category,
+                          child: Text(category),
+                        ))
+                    .toList(),
+                onChanged: (String? value) {},
+              ),
+            ],
+          )),
+    );
   }
 }

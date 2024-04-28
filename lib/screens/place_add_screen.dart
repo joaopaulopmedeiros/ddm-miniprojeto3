@@ -2,6 +2,7 @@ import 'package:f03_lugares/components/main_drawer.dart';
 import 'package:f03_lugares/models/place.dart';
 import 'package:f03_lugares/providers/country.dart';
 import 'package:f03_lugares/providers/place.dart';
+import 'package:f03_lugares/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +61,7 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                   titulo = value ?? "";
                 },
                 validator: (String? value) {
-                  return (value != null && value != "")
+                  return (value == null || value == "")
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
@@ -71,10 +72,11 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                   labelText: 'Custo médio',
                 ),
                 onSaved: (String? value) {
-                  custoMedio = double.parse(value ?? "0");
+                  String v = value != null && value != "" ? value.toString() : "0";
+                  custoMedio = double.parse(v);
                 },
                 validator: (String? value) {
-                  return (value != null && value != "")
+                  return (value == null || value == "")
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
@@ -88,7 +90,7 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                   imagemUrl = value ?? "";
                 },
                 validator: (String? value) {
-                  return (value != null && value != "")
+                  return (value == null || value == "")
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
@@ -102,7 +104,7 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                   recomendacao = value ?? "";
                 },
                 validator: (String? value) {
-                  return (value != null && value != "")
+                  return (value == null || value == "")
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
@@ -113,10 +115,11 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                   labelText: 'Avaliação',
                 ),
                 onSaved: (String? value) {
-                  avaliacao = double.parse(value ?? "0");
+                  String v = value != null && value != "" ? value.toString() : "0";
+                  avaliacao = double.parse(v);
                 },
                 validator: (String? value) {
-                  return (value != null && value != "")
+                  return (value == null || value == "")
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
@@ -142,30 +145,20 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // if (_formKey.currentState!.validate()) {                    
-                  //   var place = const Place(id: "p7", 
-                  //     paises: ["c1"], 
-                  //     titulo: "Meu titulo", 
-                  //     imagemUrl: "https://image.com", 
-                  //     recomendacoes: ["Recomendacao"], 
-                  //     avaliacao: 4.7, 
-                  //     custoMedio: 650.2);
-
-                  //   placeProvider.addPlace(place);
-                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  //   Navigator.of(context).pushNamed(AppRoutes.HOME);
-                  // }
+                  if (_formKey.currentState != null && _formKey.currentState!.validate()) {    
+                    _formKey.currentState!.save();                
                     var place = Place(
                       id: "p${placeProvider.places.length+1}", 
-                      paises: [selectedCountryId.toString()], 
+                      paises: [selectedCountryId ?? ""], 
                       titulo: titulo, 
                       imagemUrl: imagemUrl, 
                       recomendacoes: [recomendacao], 
                       avaliacao: avaliacao, 
                       custoMedio: custoMedio);
-
                     placeProvider.addPlace(place);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.of(context).pushNamed(AppRoutes.HOME);
+                  }
                 },
                 child: const Text('Adicionar'),
               ),

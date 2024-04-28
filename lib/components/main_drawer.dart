@@ -46,7 +46,9 @@ class MainDrawer extends StatelessWidget {
           _createItem(Icons.table_rows, 'Gerenciar Lugares',
               () => Navigator.of(context).pushReplacementNamed(AppRoutes.PLACES_MANAGEMENT)),              
           _createItem(Icons.create, 'Cadastrar Lugares',
-              () => Navigator.of(context).pushReplacementNamed(AppRoutes.PLACES_ADD)),              
+              () => Navigator.of(context).pushReplacementNamed(AppRoutes.PLACES_ADD)),  
+          _createItem(Icons.manage_search, 'Gerenciar Países',
+              () => Navigator.of(context).pushReplacementNamed(AppRoutes.COUNTRY_MANAGEMENT)),                            
           _createItem(
               Icons.settings,
               'Configurações',

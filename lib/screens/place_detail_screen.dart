@@ -1,24 +1,20 @@
 import 'package:f03_lugares/models/place.dart';
+import 'package:f03_lugares/providers/favorite.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PlaceDetailScreen extends StatelessWidget {
-  final Function(Place) onToggleFavorite;
-  final Function(Place) isFavorite;
-
-  const PlaceDetailScreen(this.onToggleFavorite, this.isFavorite);
+  const PlaceDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
     final place = ModalRoute.of(context)?.settings.arguments as Place;
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(place.titulo),
       ),
-      /*
-      body: Center(
-        child: Text('Detalhes da Lugar!'),
-      ),*/
       body: Column(
         children: <Widget>[
           Container(
@@ -71,9 +67,9 @@ class PlaceDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          onToggleFavorite(place);
+          favoriteProvider.toggleFavorite(place);
         },
-        child: Icon(isFavorite(place) ? Icons.star : Icons.star_border),
+        child: Icon(favoriteProvider.isFavorite(place) ? Icons.star : Icons.star_border),
       ),
     );
   }

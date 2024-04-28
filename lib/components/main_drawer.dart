@@ -39,8 +39,10 @@ class MainDrawer extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary),
             ),
           ),
-          _createItem(Icons.place, 'Lugares',
+          _createItem(Icons.place, 'Ver Lugares',
               () => Navigator.of(context).pushReplacementNamed(AppRoutes.HOME)),
+          _createItem(Icons.create, 'Cadastrar Lugares',
+              () => Navigator.of(context).pushReplacementNamed(AppRoutes.PLACES_ADD)),              
           _createItem(
               Icons.settings,
               'Configurações',

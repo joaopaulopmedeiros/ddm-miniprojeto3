@@ -1,5 +1,7 @@
 import 'package:f03_lugares/components/country_item.dart';
+import 'package:f03_lugares/providers/country.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../data/my_data.dart';
 
 class CountriesScreen extends StatelessWidget {
@@ -7,22 +9,19 @@ class CountriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<CountryProvider>(context);
+
     return Scaffold(
-      /*  appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Bora viajar?!',
-          )), */
       body: GridView(
         padding: const EdgeInsets.all(25),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent:
-              200, //cada elemento com extenso maxima de 200 pixel
-          childAspectRatio: 3 / 2, //proporcao de cada elemento dentro do grid
-          crossAxisSpacing: 20, //espacamento no eixo cruzado
-          mainAxisSpacing: 20, //espacamento no eixo principal
+              200, 
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
-        children: DUMMY_COUNTRIES.map((country) {
+        children: provider.countries.map((country) {
           return CountryItem(country);
         }).toList(),
       ),

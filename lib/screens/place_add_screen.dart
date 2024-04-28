@@ -1,6 +1,7 @@
 import 'package:f03_lugares/components/main_drawer.dart';
+import 'package:f03_lugares/models/place.dart';
 import 'package:f03_lugares/providers/country.dart';
-import 'package:f03_lugares/utils/app_routes.dart';
+import 'package:f03_lugares/providers/place.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,9 +31,8 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CountryProvider>(context);
-    final List<String> categories =
-        provider.countries.map((e) => e.id).toList();
+    final List<String> categories = Provider.of<CountryProvider>(context).countries.map((e) => e.id).toList();
+    final placeProvider = Provider.of<PlaceProvider>(context);
     String? selectedCategory;
 
     const snackBar = SnackBar(
@@ -113,10 +113,30 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+                  // if (_formKey.currentState!.validate()) {                    
+                  //   var place = const Place(id: "p7", 
+                  //     paises: ["c1"], 
+                  //     titulo: "Meu titulo", 
+                  //     imagemUrl: "https://image.com", 
+                  //     recomendacoes: ["Recomendacao"], 
+                  //     avaliacao: 4.7, 
+                  //     custoMedio: 650.2);
+
+                  //   placeProvider.addPlace(place);
+                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  //   Navigator.of(context).pushNamed(AppRoutes.HOME);
+                  // }
+
+                    var place = const Place(id: "p7", 
+                      paises: ["c1"], 
+                      titulo: "Meu titulo", 
+                      imagemUrl: "https://image.com", 
+                      recomendacoes: ["Recomendacao"], 
+                      avaliacao: 4.7, 
+                      custoMedio: 650.2);
+
+                    placeProvider.addPlace(place);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    Navigator.of(context).pushNamed(AppRoutes.HOME);
-                  }
                 },
                 child: const Text('Adicionar'),
               ),

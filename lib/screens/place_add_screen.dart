@@ -64,7 +64,7 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
-              ), 
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'https://image.com',
@@ -76,7 +76,7 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
-              ),               
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   hintText: '1 a 5',
@@ -88,8 +88,10 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                       ? 'Preencha o campo obrigatório.'
                       : null;
                 },
-              ),      
-              const SizedBox(height: 12,),              
+              ),
+              const SizedBox(
+                height: 12,
+              ),
               DropdownButtonFormField<String>(
                 hint: const Text("País"),
                 value: selectedCategory,
@@ -100,6 +102,15 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                         ))
                     .toList(),
                 onChanged: (String? value) {},
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
+                child: const Text('Adicionar'),
               ),
             ],
           )),

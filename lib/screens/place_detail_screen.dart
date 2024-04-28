@@ -10,14 +10,14 @@ class PlaceDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
     final place = ModalRoute.of(context)?.settings.arguments as Place;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(place.titulo),
       ),
       body: Column(
         children: <Widget>[
-          Container(
+          SizedBox(
             height: 300,
             width: double.infinity,
             child: Image.network(
@@ -58,7 +58,7 @@ class PlaceDetailScreen extends StatelessWidget {
                           print(place.recomendacoes[index]);
                         },
                       ),
-                      Divider(),
+                      const Divider(),
                     ],
                   );
                 }),

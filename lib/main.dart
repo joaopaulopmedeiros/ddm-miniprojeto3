@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:f03_lugares/providers/favorite.dart';
 import 'package:f03_lugares/screens/countries_places_screen.dart';
 import 'package:f03_lugares/screens/place_add_screen.dart';
@@ -37,11 +35,11 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          AppRoutes.HOME: (ctx) => TabsScreen(),
-          AppRoutes.COUNTRY_PLACES: (ctx) => CountryPlacesScreen(),
+          AppRoutes.HOME: (ctx) => const TabsScreen(),
+          AppRoutes.COUNTRY_PLACES: (ctx) => const CountryPlacesScreen(),
           AppRoutes.PLACES_DETAIL: (ctx) => const PlaceDetailScreen(),
           AppRoutes.PLACES_ADD: (ctx) => const AddPlaceScreen(),
-          AppRoutes.SETTINGS: (ctx) => SettingsScreen(),
+          AppRoutes.SETTINGS: (ctx) => const SettingsScreen(),
         },
       ),
     );

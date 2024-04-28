@@ -6,6 +6,8 @@ import 'countries_screen.dart';
 import 'favorite_screen.dart';
 
 class TabsScreen extends StatelessWidget {
+  const TabsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<FavoriteProvider>(
@@ -14,18 +16,18 @@ class TabsScreen extends StatelessWidget {
           length: 2,
           child: Scaffold(
             appBar: AppBar(
-              title: Text('PlacesToGo'),
-              bottom: TabBar(
+              title: const Text('PlacesToGo'),
+              bottom: const TabBar(
                 tabs: [
                   Tab(icon: Icon(Icons.category), text: 'Countries'),
                   Tab(icon: Icon(Icons.star), text: 'Favorites'),
                 ],
               ),
             ),
-            drawer: MainDrawer(),
+            drawer: const MainDrawer(),
             body: TabBarView(
               children: [
-                CountriesScreen(),
+                const CountriesScreen(),
                 FavoriteScreen(favoritesProvider.favoritePlaces),
               ],
             ),

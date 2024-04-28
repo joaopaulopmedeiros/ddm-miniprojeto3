@@ -4,6 +4,8 @@ import 'package:f03_lugares/models/country.dart';
 import 'package:flutter/material.dart';
 
 class CountryPlacesScreen extends StatelessWidget {
+  const CountryPlacesScreen({super.key});
+
   //Country country;
   // CountryPlacesScreen(this.country);
 

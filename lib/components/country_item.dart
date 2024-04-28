@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../models/country.dart';
@@ -6,7 +5,7 @@ import '../models/country.dart';
 class CountryItem extends StatelessWidget {
   final Country country;
 
-  const CountryItem(this.country);
+  const CountryItem(this.country, {super.key});
 
   void _selectedCountry(BuildContext context) {
     /*
@@ -25,11 +24,7 @@ class CountryItem extends StatelessWidget {
     return InkWell(
       onTap: () => _selectedCountry(context),
       child: Container(
-        padding: EdgeInsets.all(15),
-        child: Text(
-          country.title,
-          style: Theme.of(context).textTheme.headline6,
-        ),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             gradient: LinearGradient(
@@ -40,6 +35,10 @@ class CountryItem extends StatelessWidget {
                 begin: Alignment.topLeft, //inicio do gradiente
                 end: Alignment.bottomRight // fim
                 )),
+        child: Text(
+          country.title,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
     );
   }

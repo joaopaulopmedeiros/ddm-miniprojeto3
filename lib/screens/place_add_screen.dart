@@ -53,6 +53,43 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                       : null;
                 },
               ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: '0.00',
+                  labelText: 'Custo médio',
+                ),
+                onSaved: (String? value) {},
+                validator: (String? value) {
+                  return (value != null && value != "")
+                      ? 'Preencha o campo obrigatório.'
+                      : null;
+                },
+              ), 
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'https://image.com',
+                  labelText: 'URL da imagem',
+                ),
+                onSaved: (String? value) {},
+                validator: (String? value) {
+                  return (value != null && value != "")
+                      ? 'Preencha o campo obrigatório.'
+                      : null;
+                },
+              ),               
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: '1 a 5',
+                  labelText: 'Avaliação',
+                ),
+                onSaved: (String? value) {},
+                validator: (String? value) {
+                  return (value != null && value != "")
+                      ? 'Preencha o campo obrigatório.'
+                      : null;
+                },
+              ),      
+              const SizedBox(height: 12,),              
               DropdownButtonFormField<String>(
                 hint: const Text("País"),
                 value: selectedCategory,

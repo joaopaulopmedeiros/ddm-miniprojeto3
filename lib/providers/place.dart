@@ -15,4 +15,10 @@ class PlaceProvider extends ChangeNotifier
     _places.add(place);
     notifyListeners();
   }
+
+  void removePlace(Place place)
+  {
+    _places.remove(place);
+    notifyListeners();
+  }
 }

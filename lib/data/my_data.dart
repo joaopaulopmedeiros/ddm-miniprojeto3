@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/country.dart';
 
-const DUMMY_COUNTRIES = [
+var DUMMY_COUNTRIES = [
   Country(
     id: 'c1',
     title: 'Estados Unidos',
@@ -47,7 +47,7 @@ const DUMMY_COUNTRIES = [
 ];
 
 var dummyPlaces = [
-  const Place(
+  Place(
     id: 'p1',
     titulo: 'Praia',
     paises: ['c8', 'c5', 'c9'],
@@ -62,7 +62,7 @@ var dummyPlaces = [
     imagemUrl:
         'https://s2.glbimg.com/Qgl26Ze8x7iJ1HoFwwRkwfjgGrM=/smart/e.glbimg.com/og/ed/f/original/2020/11/05/brasil-tem-duas-praias-entre-as-cinco-melhores-do-mundo.jpg',
   ),
-  const Place(
+  Place(
     id: 'p2',
     titulo: 'Montanha',
     paises: ['c1', 'c2', 'c4', 'c3'],
@@ -76,7 +76,7 @@ var dummyPlaces = [
     imagemUrl:
         'https://images.memphistours.com/large/60e4be05c4ef4373c71802b0dd3f9e62.jpg',
   ),
-  const Place(
+  Place(
     id: 'p3',
     titulo: 'Deserto',
     paises: ['c10', 'c4'],
@@ -90,7 +90,7 @@ var dummyPlaces = [
     imagemUrl:
         'https://s4.static.brasilescola.uol.com.br/be/2021/11/deserto.jpg',
   ),
-  const Place(
+  Place(
     id: 'p4',
     titulo: 'Monumentos Antigos',
     paises: ['c10', 'c7', 'c5'],
@@ -104,7 +104,7 @@ var dummyPlaces = [
     imagemUrl:
         'https://img.freepik.com/fotos-gratis/tiro-de-angulo-baixo-dos-antigos-pilares-de-pedra-grega-com-um-ceu-azul-claro_181624-2890.jpg',
   ),
-  const Place(
+  Place(
     id: 'p5',
     titulo: 'Monumentos Modernos',
     paises: ['c1'],
@@ -117,7 +117,7 @@ var dummyPlaces = [
     imagemUrl:
         'https://www.infoescola.com/wp-content/uploads/2009/03/estatua-da-liberdade.jpg',
   ),
-  const Place(
+  Place(
     id: 'p6',
     titulo: 'Maravilhas da Natureza',
     paises: ['c2', 'c8'],

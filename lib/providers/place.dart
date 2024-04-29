@@ -21,4 +21,14 @@ class PlaceProvider extends ChangeNotifier
     _places.remove(place);
     notifyListeners();
   }
+
+  void editPlace(Place editedPlace) 
+  {
+    int index = places.indexWhere((place) => place.id == editedPlace.id);
+    if (index != -1) 
+    {
+      _places[index] = editedPlace;
+      notifyListeners();
+    }
+  }
 }

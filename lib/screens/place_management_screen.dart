@@ -27,6 +27,7 @@ class PlaceManagementScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
+                    provider.editPlace(place);
                   },
                 ),
                 IconButton(

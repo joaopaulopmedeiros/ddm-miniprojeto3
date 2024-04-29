@@ -93,5 +93,6 @@ class CountryProvider extends ChangeNotifier
   void addCountry(newCountry) 
   {
     _countries.add(newCountry);
+    notifyListeners();
   }
 }

@@ -9,55 +9,54 @@ class CountryManagementScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CountryProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gerenciar Países'),
-      ),
-      body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        DataTable(
-          columns: const [
-            DataColumn(label: Text('Nome')),
-            DataColumn(label: Text('Ações')),
-          ],
-          rows: provider.countries.map((country) {
-            return DataRow(cells: [
-              DataCell(Text(country.title)),
-              DataCell(Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.edit),
-                    onPressed: () {
-                      provider.editCountry(country, context);
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      provider.removeCountry(country, context);
-                    },
-                  ),
-                ],
-              )),
-            ]);
-          }).toList(),
+    return Consumer<CountryProvider>(builder: ((context, countryProvider, _) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Gerenciar Países'),
         ),
-      ]),
-      drawer: const MainDrawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final newCountry = await showModalBottomSheet<Country>(
-            context: context,
-            builder: (context) => CreateCountryModal(),
-          );
-
-          if (newCountry != null) {
-            provider.addCountry(newCountry);
-          }
-        },
-        child: const Icon(Icons.add)
-      ),
-    );
+        body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          DataTable(
+            columns: const [
+              DataColumn(label: Text('Nome')),
+              DataColumn(label: Text('Ações')),
+            ],
+            rows: countryProvider.countries.map((country) {
+              return DataRow(cells: [
+                DataCell(Text(country.title)),
+                DataCell(Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        countryProvider.editCountry(country, context);
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        countryProvider.removeCountry(country, context);
+                      },
+                    ),
+                  ],
+                )),
+              ]);
+            }).toList(),
+          ),
+        ]),
+        drawer: const MainDrawer(),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              final newCountry = await showModalBottomSheet<Country>(
+                context: context,
+                builder: (context) => CreateCountryModal(),
+              );
+              if (newCountry != null) {
+                countryProvider.addCountry(newCountry);
+              }
+            },
+            child: const Icon(Icons.add)),
+      );
+    }));
   }
 }
 

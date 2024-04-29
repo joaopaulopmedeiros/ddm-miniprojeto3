@@ -12,7 +12,7 @@ class PlaceItem extends StatelessWidget {
         .pushNamed(
           AppRoutes.PLACES_DETAIL,
           arguments:
-              place, //passar um map com chave valor para passar mais de um argumento
+              place, 
         )
         .then((value) => {
               if (value == null) {} else {print(value)}
@@ -31,7 +31,6 @@ class PlaceItem extends StatelessWidget {
           children: <Widget>[
             Stack(children: <Widget>[
               ClipRRect(
-                //bordas na imagem
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
@@ -44,7 +43,6 @@ class PlaceItem extends StatelessWidget {
                 ),
               ),
               Positioned(
-                //só funciona no contexto do Stack - posso posicionar o elemento
                 right: 10,
                 bottom: 20,
                 child: Container(

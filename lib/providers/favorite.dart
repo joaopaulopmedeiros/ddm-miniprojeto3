@@ -10,6 +10,7 @@ class FavoriteProvider extends ChangeNotifier
       favoritePlaces.contains(place)
           ? favoritePlaces.remove(place)
           : favoritePlaces.add(place);
+      notifyListeners();          
   }
 
   bool isFavorite(Place place) {

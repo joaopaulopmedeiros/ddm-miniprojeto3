@@ -14,8 +14,7 @@ class PlaceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removePlace(Place placeToRemove, BuildContext context) 
-  {
+  void removePlace(Place placeToRemove, BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -47,50 +46,49 @@ class PlaceProvider extends ChangeNotifier {
     );
   }
 
-void editPlace(Place originalPlace, BuildContext context) {
-  Place editedPlace = Place.copy(originalPlace);
-  TextEditingController nameController = TextEditingController(text: originalPlace.titulo);
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Editar Lugar'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            TextFormField(
-              controller: nameController,
-              decoration: const InputDecoration(labelText: 'Título'),
-              onChanged: (value) {
-                editedPlace.setTitulo(value);
+  void editPlace(Place originalPlace, BuildContext context) {
+    Place editedPlace = Place.copy(originalPlace);
+    TextEditingController nameController =
+        TextEditingController(text: originalPlace.titulo);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Editar Lugar'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Título'),
+                onChanged: (value) {
+                  editedPlace.setTitulo(value);
+                },
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
               },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                int index =
+                    places.indexWhere((place) => place.id == editedPlace.id);
+                if (index != -1) {
+                  _places[index] = editedPlace;
+                  notifyListeners();
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('Confirmar'),
             ),
           ],
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Cancelar'),
-          ),
-          TextButton(
-            onPressed: () 
-            {
-              int index = places.indexWhere((place) => place.id == editedPlace.id);              
-              if (index != -1) 
-              {
-                _places[index] = editedPlace;
-                notifyListeners();
-              }
-              Navigator.of(context).pop();
-            },
-            child: const Text('Confirmar'),
-          ),
-        ],
-      );
-    },
-  );
-}
-
+        );
+      },
+    );
+  }
 }

@@ -44,5 +44,49 @@ class CountryProvider extends ChangeNotifier
     );
   }
 
-  void editCountry(Country country, BuildContext context) {}
+  void editCountry(Country originalCountry, BuildContext context) 
+  {
+    Country editedCountry = Country.copy(originalCountry);
+    TextEditingController nameController =
+        TextEditingController(text: originalCountry.title);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Editar Lugar'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Título'),
+                onChanged: (value) {
+                  editedCountry.setTitle(value);
+                },
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                int index = _countries.indexWhere((place) => place.id == editedCountry.id);
+                if (index != -1) {
+                  _countries[index] = editedCountry;
+                  notifyListeners();
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('Confirmar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

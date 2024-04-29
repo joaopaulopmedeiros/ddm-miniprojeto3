@@ -43,6 +43,11 @@ class CountryManagementScreen extends StatelessWidget {
         ),
       ]),
       drawer: const MainDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: const Icon(Icons.add)
+      ),
     );
   }
 }

@@ -6,4 +6,8 @@ import '../models/country.dart';
 class CountryProvider extends ChangeNotifier
 {
   final List<Country> countries = DUMMY_COUNTRIES;
+
+  void removeCountry(Country country, BuildContext context) {}
+
+  void editCountry(Country country, BuildContext context) {}
 }

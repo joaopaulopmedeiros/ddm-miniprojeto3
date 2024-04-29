@@ -16,10 +16,35 @@ class PlaceProvider extends ChangeNotifier
     notifyListeners();
   }
 
-  void removePlace(Place place)
-  {
-    _places.remove(place);
-    notifyListeners();
+void removePlace(Place placeToRemove, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmar Remoção'),
+          content: Text('Tem certeza de que deseja remover ${placeToRemove.titulo}?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                _places.remove(placeToRemove);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('${placeToRemove.titulo} removido')),
+                );
+                Navigator.of(context).pop();
+                notifyListeners();
+              },
+              child: const Text('Confirmar'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void editPlace(Place editedPlace) 

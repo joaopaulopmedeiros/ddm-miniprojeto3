@@ -33,7 +33,7 @@ class PlaceManagementScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
-                    provider.removePlace(place);
+                    provider.removePlace(place, context);
                   },
                 ),
               ],

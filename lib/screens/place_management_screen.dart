@@ -14,6 +14,7 @@ class PlaceManagementScreen extends StatelessWidget {
         title: const Text('Gerenciar Lugares'),
       ),
       body: Container(
+        margin: const EdgeInsets.all(12),
         child:  DataTable(
         columns: const [
           DataColumn(label: Text('Nome')),

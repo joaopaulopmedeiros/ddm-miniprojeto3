@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/country.dart';
 
-var DUMMY_COUNTRIES = [
+var dummyCountries = [
   Country(
     id: 'c1',
     title: 'Estados Unidos',

@@ -139,6 +139,11 @@ class _AddPlaceFormState extends State<AddPlaceForm> {
                 onChanged: (String? value) {
                   selectedCountryId = value;
                 },
+                validator: (String? value) {
+                  return (value == null || value == "")
+                      ? 'Preencha o campo obrigatório.'
+                      : null;                  
+                },
               ),
               const SizedBox(
                 height: 12,

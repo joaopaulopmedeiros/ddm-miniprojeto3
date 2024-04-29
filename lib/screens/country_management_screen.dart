@@ -1,4 +1,5 @@
 import 'package:f03_lugares/components/main_drawer.dart';
+import 'package:f03_lugares/models/country.dart';
 import 'package:f03_lugares/providers/country.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,9 +45,73 @@ class CountryManagementScreen extends StatelessWidget {
       ]),
       drawer: const MainDrawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          final newCountry = await showModalBottomSheet<Country>(
+            context: context,
+            builder: (context) => CreateCountryModal(),
+          );
+
+          if (newCountry != null) {
+            provider.addCountry(newCountry);
+          }
         },
         child: const Icon(Icons.add)
+      ),
+    );
+  }
+}
+
+class CreateCountryModal extends StatelessWidget {
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Text(
+              'Adicionar País',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            TextFormField(
+              controller: idController,
+              decoration: const InputDecoration(
+                labelText: 'ID',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            TextFormField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                labelText: 'Título',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                  Country(
+                    id: idController.text,
+                    title: titleController.text,
+                  ),
+                );
+              },
+              child: const Text('Adicionar'),
+            ),
+          ],
+        ),
       ),
     );
   }

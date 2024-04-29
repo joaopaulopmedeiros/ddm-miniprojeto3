@@ -70,12 +70,12 @@ class CreateCountryModal extends StatefulWidget {
 
 class _CreateCountryModalState extends State<CreateCountryModal> 
 {
-  final TextEditingController idController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   Color selectedColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<CountryProvider>(context);
     void showColorPicker() {
       showDialog(
         context: context,
@@ -121,14 +121,6 @@ class _CreateCountryModalState extends State<CreateCountryModal>
             ),
             const SizedBox(height: 20.0),
             TextFormField(
-              controller: idController,
-              decoration: const InputDecoration(
-                labelText: 'ID',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
               controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Título',
@@ -162,7 +154,7 @@ class _CreateCountryModalState extends State<CreateCountryModal>
                 Navigator.pop(
                   context,
                   Country(
-                    id: idController.text,
+                    id: "c${provider.countries.length+1}",
                     title: titleController.text,
                     color: selectedColor
                   ),
